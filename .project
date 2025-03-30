@@ -1,17 +1,24 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<projectDescription>
-	<name>projetogithub</name>
-	<comment></comment>
-	<projects>
-	</projects>
-	<buildSpec>
-		<buildCommand>
-			<name>org.eclipse.jdt.core.javabuilder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
-	</buildSpec>
-	<natures>
-		<nature>org.eclipse.jdt.core.javanature</nature>
-	</natures>
-</projectDescription>
+package pack1;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.DayOfWeek;
+import java.util.Locale;
+
+public class aula {
+
+    public static String getDataPorExtenso() {
+        LocalDateTime agora = LocalDateTime.now();
+        DayOfWeek diaSemana = agora.getDayOfWeek();
+        String diaSemanaExtenso = diaSemana.getDisplayName(java.time.format.TextStyle.FULL, new Locale("pt", "BR"));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd 'de' MMMM 'de' yyyy", new Locale("pt", "BR"));
+        String dataFormatada = agora.format(formatter);
+        int hora = agora.getHour();
+        int minuto = agora.getMinute();
+        return String.format("Hoje é %s, dia %s e agora são %d horas e %d minutos.", 
+                             diaSemanaExtenso, dataFormatada, hora, minuto);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(getDataPorExtenso());
+    }
+}
